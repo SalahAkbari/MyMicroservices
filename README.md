@@ -1,7 +1,7 @@
 # MyMicroservices
 There is two microservices using .NET 5.0.  I have extended the microservices using CQRS, docker and docker-compose, RabbitMQ.
-# The Microservice Responsibilities
-Our two microservice should satisfy the following requirements:
+# The Microservices Responsibilities
+Our two microservices should satisfy the following requirements:
 
 * Implement a Customer API with the following methods: create customer, update customer
 * Implement an Order API with the following methods: create order, pay order, get all orders which had already been paid

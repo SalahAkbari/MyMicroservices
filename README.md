@@ -20,13 +20,14 @@ I've placed everything like controllers or models in a v1 folder, to implement v
 
 
 # The API Project
-The API project is the heart of the application and contains the controllers, validators, and models as well as the startup class in which all dependencies are registered. I have tried to keep the controller methods as simple as possible. They only call different services and return a model or status to the client. They don’t do any business logic. The `_mediator.Send` is used to call a service using CQRS and the Mediator pattern. Also To validate the user input, I've used the NuGet `FluentValidations` and a validator per model. I've tried to keep things simple and only validate that the first and last name has at least two characters and that the age and birthday are between zero and 150 years. But in a real project, we definitely need to add more rules.  
+The API project is the heart of the application and contains the controllers, validators, and models as well as the startup class in which all dependencies are registered. I have tried to keep the controller methods as simple as possible. They only call different services and return a model or status to the client. They don’t do any business logic. The `_mediator.Send` is used to call a service using CQRS and the Mediator pattern. Also to validate the user input, I've used the NuGet `FluentValidations` and a validator per model. I've tried to keep things simple and only validate that the first and last name has at least two characters and that the age and birthday are between zero and 150 years. But in a real project, we definitely need to add more rules.  
 
 # The Data Project
 The Data project contains everything needed to access the database. I've used Entity Framework Core, an in-memory database and the repository pattern. We can change it to a normal database easily in a real project though. All that we need to do, in order to use a normal database instead, is changing the following line:
 
     services.AddDbContext<CustomerContext>(options => options.UseInMemoryDatabase(Guid.NewGuid().ToString()));  
 To this:
+
     services.AddDbContext<CustomerContext>(options => options.UseSqlServer(Configuration["Database:ConnectionString"]));  
 # The Domain Project
 The Domain project contains all entities and no business logic. In our microservices, this is only the `Customer` or `Order` entitities.
